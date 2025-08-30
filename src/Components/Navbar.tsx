@@ -89,7 +89,7 @@ const Navbar = () => {
                     <button
                       onClick={toggleGallery}
                       className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-gray-50 ${
-                        isActiveRoute(item.href) ? 'text-white shadow-lg' : 'text-gray-700 hover:text-blue-600'
+                        isActiveRoute(item.href) ? 'text-white shadow-lg' : 'text-black hover:text-blue-600'
                       }`}
                       style={{ backgroundColor: isActiveRoute(item.href) ? '#2ca8e0' : undefined }}
                     >
@@ -110,7 +110,7 @@ const Navbar = () => {
                             href={dropdownItem.href}
                             onClick={() => setIsGalleryOpen(false)}
                             className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 hover:bg-blue-50 hover:text-blue-600 mx-2 rounded-lg ${
-                              pathname === dropdownItem.href ? 'text-white shadow-md' : 'text-gray-700'
+                              pathname === dropdownItem.href ? 'text-white shadow-md' : 'text-black'
                             }`}
                             style={{ backgroundColor: pathname === dropdownItem.href ? '#2ca8e0' : undefined }}
                           >
@@ -124,7 +124,7 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-gray-50 ${
-                      isActiveRoute(item.href) ? 'text-white shadow-lg' : 'text-gray-700 hover:text-blue-600'
+                      isActiveRoute(item.href) ? 'text-white shadow-lg' : 'text-black hover:text-blue-600'
                     }`}
                     style={{ backgroundColor: isActiveRoute(item.href) ? '#2ca8e0' : undefined }}
                   >
@@ -135,7 +135,7 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Actions */}
+        
           <div className="flex items-center space-x-3">
             <Link
               href="/booking"
@@ -147,14 +147,14 @@ const Navbar = () => {
 
             <Link
               href="/admin"
-              className="hidden md:block text-sm font-medium text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              className="hidden md:block text-sm font-medium text-black hover:text-gray-700 transition-colors duration-200"
             >
               Admin
             </Link>
 
             <button
               onClick={toggleMenu}
-              className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+              className="lg:hidden p-2 rounded-lg text-black hover:bg-gray-100 transition-colors duration-200"
               aria-expanded={isMenuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -174,7 +174,7 @@ const Navbar = () => {
                       <button
                         onClick={() => setIsGalleryOpen(!isGalleryOpen)}
                         className={`flex items-center justify-between w-full text-left text-base font-medium transition-colors duration-200 hover:text-blue-600 py-3 px-2 rounded-lg hover:bg-white ${
-                          isActiveRoute(item.href) ? 'text-white shadow-md' : 'text-gray-700'
+                          isActiveRoute(item.href) ? 'text-white shadow-md' : 'text-black'
                         }`}
                         style={{ backgroundColor: isActiveRoute(item.href) ? '#2ca8e0' : undefined }}
                       >
@@ -191,7 +191,7 @@ const Navbar = () => {
                               setIsGalleryOpen(false);
                             }}
                             className={`block text-sm font-medium py-2 px-3 rounded-lg transition-colors duration-200 hover:text-blue-600 hover:bg-white ${
-                              pathname === dropdownItem.href ? 'text-white shadow-md' : 'text-gray-600'
+                              pathname === dropdownItem.href ? 'text-white shadow-md' : 'text-black-600'
                             }`}
                             style={{ backgroundColor: pathname === dropdownItem.href ? '#2ca8e0' : undefined }}
                           >

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { Calendar, Users, Coffee, Camera, Wine, Utensils, Phone, ArrowRight } from 'lucide-react';
+import { Calendar, Users, Coffee, Camera, Wine, Utensils, Phone, ArrowRight, Award, Heart, Star } from 'lucide-react';
 import Image from 'next/image';
 
 const Hero = () => {
@@ -112,7 +112,7 @@ const Hero = () => {
   const testimonials = [
     {
       rating: 5,
-      text: "JKO Projects helped make our occasion special, provided excellent service and created a great experience, I couldn't recommend their service to anyone looking for a truly exceptional event experience!",
+      text: " helped make our occasion special, provided excellent service and created a great experience, I couldn't recommend their service to anyone looking for a truly exceptional event experience!",
       name: "Mark & Jane",
       role: "Wedding Clients",
       avatar: "M"
@@ -132,6 +132,13 @@ const Hero = () => {
       avatar: "A"
     }
   ];
+
+  const aboutStats = [
+    { number: "500+", label: "Events Completed", icon: Award },
+    { number: "10+", label: "Years Experience", icon: Star },
+    { number: "1000+", label: "Happy Clients", icon: Heart }
+  ];
+
 type StarRatingProps = {
   rating: number;
 };
@@ -146,13 +153,12 @@ const StarRating = ({ rating }: StarRatingProps) => (
   </div>
 );
 
-
   return (
-    <div className="min-h-screen bg-gray-100" style={{ fontFamily: 'Arial, sans-serif' }}>
+    <div className="min-h-screen bg-gray-100" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
       {/* Hero Section */}
       <section className="bg-black text-white py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: 'Arial, sans-serif', fontWeight: 'bold' }}>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif', fontWeight: 'bold' }}>
             Beautiful in Execution,{' '}
             <span style={{ color: '#2ca8e0' }}>Creative in Approach</span>
           </h1>
@@ -163,7 +169,7 @@ const StarRating = ({ rating }: StarRatingProps) => (
             that leave lasting impressions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors" style={{ backgroundColor: '#2ca8e0' }}>
+            <button className="text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors hover:opacity-90" style={{ backgroundColor: '#2ca8e0' }}>
               Book Your Event
             </button>
             <a 
@@ -177,19 +183,59 @@ const StarRating = ({ rating }: StarRatingProps) => (
         </div>
       </section>
 
+      {/* About Us Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
+              About <span style={{ color: '#2ca8e0' }}>ABC Event Ushers</span>
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8">
+              With over a decade of experience, ABC Event Ushers is Rwanda's premier event planning company. We transform your vision into reality through meticulous planning, creative design, and flawless execution for weddings, corporate events, and social celebrations.
+            </p>
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 mb-12">
+            {aboutStats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#2ca8e0' }}>
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-3xl font-bold mb-2" style={{ color: '#1e75bb', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-gray-600 font-semibold">
+                    {stat.label}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center">
+            <button className="text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:opacity-90 hover:transform hover:scale-105" style={{ backgroundColor: '#1e75bb', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
+              Learn More About Us
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Gallery Section */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: 'Arial, sans-serif' }}>
-              Our Event Gallery
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
+              Our Gallery
             </h2>
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+            <p className="text-black text-lg max-w-3xl mx-auto">
               Explore our diverse portfolio of successful events across different categories. Each event is uniquely crafted to reflect our clients' vision and style.
             </p>
           </div>
 
-          {/* Category Navigation */}
           <div className="flex flex-wrap justify-center mb-8 gap-4">
             {galleryCategories.map((category, index) => (
               <button
@@ -198,11 +244,11 @@ const StarRating = ({ rating }: StarRatingProps) => (
                 className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
                   activeCategory === category.name
                     ? 'text-white shadow-lg transform scale-105'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    : 'bg-white text-black hover:bg-gray-100 border border-gray-200'
                 }`}
                 style={{ 
                   backgroundColor: activeCategory === category.name ? '#2ca8e0' : undefined,
-                  fontFamily: 'Arial, sans-serif'
+                  fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif'
                 }}
               >
                 {category.name}
@@ -214,38 +260,8 @@ const StarRating = ({ rating }: StarRatingProps) => (
           {galleryCategories.map((category, index) => (
             activeCategory === category.name && (
               <div key={index} className="grid lg:grid-cols-2 gap-12 items-center">
-                {/* Description Side */}
-                <div className="space-y-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800" style={{ fontFamily: 'Arial, sans-serif' }}>
-                    {category.name} Events
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    {category.description}
-                  </p>
-                  
-                  {/* Features List */}
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-800 text-lg">What's Included:</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {category.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center text-gray-700">
-                          <span className="mr-3 text-lg" style={{ color: '#2ca8e0' }}>✓</span>
-                          <span className="text-sm">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <button className="flex items-center gap-2 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity group">
-                    <span style={{ backgroundColor: '#2ca8e0' }} className="flex items-center gap-2 px-6 py-3 rounded-lg">
-                      View {category.name} Gallery
-                      <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </button>
-                </div>
-
-                {/* Image Side */}
-                <div className="relative">
+                {/* Image Side - Now on Left */}
+                <div className="relative order-1 lg:order-1">
                   <div className="relative h-96 lg:h-[500px] rounded-xl overflow-hidden shadow-2xl">
                     <Image
                       src={category.image}
@@ -264,6 +280,36 @@ const StarRating = ({ rating }: StarRatingProps) => (
                   <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full opacity-20" style={{ backgroundColor: '#2ca8e0' }}></div>
                   <div className="absolute -bottom-6 -left-6 w-16 h-16 rounded-full opacity-15" style={{ backgroundColor: '#2ca8e0' }}></div>
                 </div>
+
+                {/* Description Side - Now on Right */}
+                <div className="space-y-6 order-2 lg:order-2">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
+                    {category.name} Events
+                  </h3>
+                  <p className="text-black leading-relaxed text-lg">
+                    {category.description}
+                  </p>
+                  
+                  {/* Features List */}
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-black text-lg">What's Included:</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {category.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center text-gray-700">
+                          <span className="mr-3 text-lg" style={{ color: '#2ca8e0' }}>✓</span>
+                          <span className="text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button className="flex items-center gap-2 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity group">
+                    <span style={{ backgroundColor: '#2ca8e0' }} className="flex items-center gap-2 px-6 py-3 rounded-lg">
+                      View {category.name} Gallery
+                      <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
+                </div>
               </div>
             )
           ))}
@@ -274,7 +320,7 @@ const StarRating = ({ rating }: StarRatingProps) => (
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: 'Arial, sans-serif' }}>Our Premium Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>Our Premium Services</h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
               From intimate gatherings to grand celebrations, we bring fresh, innovative ideas to every event, ensuring an elegant and personalized touch.
             </p>
@@ -284,11 +330,11 @@ const StarRating = ({ rating }: StarRatingProps) => (
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                <div key={index} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
                   <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-6" style={{ backgroundColor: '#2ca8e0' }}>
                     <IconComponent className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-black mb-3" style={{ fontFamily: 'Arial, sans-serif' }}>{service.title}</h3>
+                  <h3 className="text-lg font-bold text-black mb-3" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>{service.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
                 </div>
               );
@@ -301,7 +347,7 @@ const StarRating = ({ rating }: StarRatingProps) => (
       <section className="py-16 px-4 bg-gray-100">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: 'Arial, sans-serif' }}>Wedding Packages</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>Wedding Packages</h2>
             <p className="text-black text-lg">
               Choose from our carefully crafted wedding packages designed to make your special day unforgettable.
             </p>
@@ -309,24 +355,24 @@ const StarRating = ({ rating }: StarRatingProps) => (
           
           <div className="grid md:grid-cols-3 gap-6">
             {packages.map((pkg, index) => (
-              <div key={index} className={`relative rounded-lg shadow-lg p-6 ${pkg.isPopular ? 'transform scale-105' : ''}`} 
+              <div key={index} className={`relative rounded-lg shadow-lg p-6 transition-transform duration-300 hover:shadow-xl ${pkg.isPopular ? 'transform scale-105' : ''}`} 
                    style={{ backgroundColor: pkg.isPopular ? '#2ca8e0' : 'white' }}>
                 {pkg.isPopular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold">
+                    <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
                       Most Popular
                     </span>
                   </div>
                 )}
                 
                 <div className="text-center mb-6">
-                  <h3 className={`text-xl font-bold mb-2 ${pkg.isPopular ? 'text-white' : 'text-black'}`} style={{ fontFamily: 'Arial, sans-serif' }}>
+                  <h3 className={`text-xl font-bold mb-2 ${pkg.isPopular ? 'text-white' : 'text-black'}`} style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
                     {pkg.name}
                   </h3>
                   <p className={`text-sm mb-3 ${pkg.isPopular ? 'text-blue-100' : 'text-black'}`}>
                     {pkg.guests}
                   </p>
-                  <p className={`text-2xl font-bold ${pkg.isPopular ? 'text-white' : ''}`} style={{ color: pkg.isPopular ? 'white' : '#2ca8e0', fontFamily: 'Arial, sans-serif' }}>
+                  <p className={`text-2xl font-bold ${pkg.isPopular ? 'text-white' : ''}`} style={{ color: pkg.isPopular ? 'white' : '#2ca8e0', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
                     {pkg.price}
                   </p>
                 </div>
@@ -340,8 +386,8 @@ const StarRating = ({ rating }: StarRatingProps) => (
                   ))}
                 </ul>
                 
-                <button className={`w-full py-3 rounded-lg font-semibold transition-colors ${pkg.isPopular ? 'bg-white text-black hover:bg-gray-100' : 'text-white'}`}
-                        style={{ backgroundColor: pkg.isPopular ? 'white' : '#2ca8e0' }}>
+                <button className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 hover:transform hover:scale-105 ${pkg.isPopular ? 'bg-white text-black hover:bg-gray-100' : 'text-white hover:opacity-90'}`}
+                        style={{ backgroundColor: pkg.isPopular ? 'white' : '#1e75bb', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
                   {pkg.buttonText}
                 </button>
               </div>
@@ -354,7 +400,7 @@ const StarRating = ({ rating }: StarRatingProps) => (
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: 'Arial, sans-serif' }}>What Our Clients Say</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#2ca8e0', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>What Our Clients Say</h2>
             <p className="text-gray-600 text-lg">
               Don't just take our word for it - hear from the families and organizations who trusted us with their special moments.
             </p>
@@ -362,15 +408,15 @@ const StarRating = ({ rating }: StarRatingProps) => (
           
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
                 <StarRating rating={testimonial.rating} />
                 <p className="text-gray-700 mb-6 leading-relaxed text-sm">"{testimonial.text}"</p>
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-3" style={{ backgroundColor: '#2ca8e0' }}>
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-3" style={{ backgroundColor: '#2ca8e0', fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-800" style={{ fontFamily: 'Arial, sans-serif' }}>{testimonial.name}</p>
+                    <p className="font-semibold text-gray-800" style={{ fontFamily: '"Arial Rounded MT Bold", Arial, sans-serif' }}>{testimonial.name}</p>
                     <p className="text-sm text-gray-600">{testimonial.role}</p>
                   </div>
                 </div>
