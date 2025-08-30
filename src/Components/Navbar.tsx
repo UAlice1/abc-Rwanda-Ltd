@@ -1,5 +1,4 @@
 'use client';
-
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,11 +16,15 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    const handleClickOutside = (event) => {
-      if (galleryRef.current && !galleryRef.current.contains(event.target)) {
-        setIsGalleryOpen(false);
-      }
-    };
+ const handleClickOutside = (event: MouseEvent) => {
+  const target = event.target as Node;
+
+  if (galleryRef.current && !galleryRef.current.contains(target)) {
+    setIsGalleryOpen(false);
+  }
+};
+
+
 
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousedown', handleClickOutside);
@@ -57,10 +60,10 @@ const Navbar = () => {
     setIsGalleryOpen(!isGalleryOpen);
   };
 
-  const isActiveRoute = (href) => {
-    if (href === '/') return pathname === '/';
-    return pathname.startsWith(href);
-  };
+ const isActiveRoute = (href: string): boolean => {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+};
 
   return (
     <header
