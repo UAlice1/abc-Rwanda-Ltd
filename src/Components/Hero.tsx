@@ -132,14 +132,20 @@ const Hero = () => {
       avatar: "A"
     }
   ];
+type StarRatingProps = {
+  rating: number;
+};
 
-  const StarRating = ({rating }) => (
-    <div className="flex mb-3">
-      {[...Array(5)].map((_, i) => (
-        <span key={i} className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}>★</span>
-      ))}
-    </div>
-  );
+const StarRating = ({ rating }: StarRatingProps) => (
+  <div className="flex mb-3">
+    {[...Array(5)].map((_, i) => (
+      <span key={i} className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}>
+        ★
+      </span>
+    ))}
+  </div>
+);
+
 
   return (
     <div className="min-h-screen bg-gray-100" style={{ fontFamily: 'Arial, sans-serif' }}>

@@ -1,4 +1,4 @@
-// pages/about.js or app/about/page.js (for App Router)
+'use client'
 import React from 'react';
 import Head from 'next/head';
 
