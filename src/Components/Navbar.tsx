@@ -72,7 +72,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto max-w-7xl">
         <div className="flex items-center justify-between h-16 px-6">
-          {/* Logo */}
+          
           <Link href="/" className="flex items-center space-x-3">
             <img
               src="/images/logo.png"
