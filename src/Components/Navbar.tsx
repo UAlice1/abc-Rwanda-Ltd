@@ -74,7 +74,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center space-x-3">
             <img src="/images/logo.png" alt="ABC Event Ushers Logo" className="h-12 w-12 object-contain" />
             <div className="hidden sm:block">
-              <p className={`text-sm transition-colors duration-200 ${isScrolled ? 'text-gray-600' : 'text-blue-200'}`}>
+              <p className={`text-sm transition-colors duration-200 ${isScrolled ? 'text-black' : 'text-blue'}`}>
                 RWANDA LIMITED
               </p>
             </div>

@@ -212,7 +212,7 @@ export default function About() {
                   className="w-full h-96 object-cover rounded-3xl shadow-2xl group-hover:scale-105 transition-all duration-700"
                 />
                 
-                {/* Gradient Overlay */}
+              
                 <div 
                   className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700"
                   style={{ background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)' }}
