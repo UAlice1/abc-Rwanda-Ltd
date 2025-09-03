@@ -3,8 +3,8 @@ import { Twitter, Facebook } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="text-white" style={{ 
-      background: 'linear-gradient(135deg, #2ca8e0 0%, #1e75bb 100%)',
+    <footer className="text-black" style={{ 
+      background: 'white',
       fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif'
     }}>
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -19,7 +19,7 @@ const Footer = () => {
                 className="h-12 w-12 object-contain"
               />
               <div>
-                <h3 className="font-bold text-xl text-white" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
+                <h3 className="font-bold text-xl text-black" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
                  Rwanda Limited
                 </h3>
               </div>
@@ -27,12 +27,12 @@ const Footer = () => {
             
             {/* Company Description */}
             <div className="space-y-1">
-              <p className="text-white leading-relaxed text-sm opacity-90">
+              <p className="text-black leading-relaxed text-sm opacity-90">
                 Beautiful in execution, creative in approach, and unique in delivering
                 unforgettable experiences. We create stunning, elegant events that leave
                 lasting
               </p>
-              <p className="text-white text-sm opacity-90">impressions.</p>
+              <p className="text-black text-sm opacity-90">impressions.</p>
             </div>
 
             {/* Social Media Icons */}
@@ -42,58 +42,58 @@ const Footer = () => {
                 className="bg-white/20 hover:bg-white/30 rounded-full p-2.5 transition-all duration-200 hover:scale-110"
                 aria-label="Twitter"
               >
-                <Twitter size={18} className="text-white" />
+                <Twitter size={18} className="text-black" />
               </Link>
               <Link 
                 href="#" 
                 className="bg-white/20 hover:bg-white/30 rounded-full p-2.5 transition-all duration-200 hover:scale-110"
                 aria-label="Twitter"
               >
-                <Twitter size={18} className="text-white" />
+                <Twitter size={18} className="text-black" />
               </Link>
               <Link 
                 href="#" 
                 className="bg-white/20 hover:bg-white/30 rounded-full p-2.5 transition-all duration-200 hover:scale-110"
                 aria-label="Facebook"
               >
-                <Facebook size={18} className="text-white" />
+                <Facebook size={18} className="text-black" />
               </Link>
             </div>
           </div>
 
           {/* Quick Links Section */}
           <div className="space-y-6">
-            <h4 className="font-bold text-xl text-white" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
+            <h4 className="font-bold text-xl text-black" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
               Quick Links
             </h4>
             <nav className="space-y-4">
               <Link 
                 href="/" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Home
               </Link>
               <Link 
                 href="/services" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block textblack hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Services
               </Link>
               <Link 
                 href="/gallery" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Gallery
               </Link>
               <Link 
                 href="/about" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 About
               </Link>
               <Link 
                 href="/contact" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Contact
               </Link>
@@ -102,43 +102,43 @@ const Footer = () => {
 
           {/* Our Services Section */}
           <div className="space-y-6">
-            <h4 className="font-bold text-xl text-white" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
+            <h4 className="font-bold text-xl text-black" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
               Our Services
             </h4>
             <nav className="space-y-4">
               <Link 
                 href="/services/event-planning" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Event Planning
               </Link>
               <Link 
                 href="/services/professional-ushers" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Professional Ushers
               </Link>
               <Link 
                 href="/services/coffee-corner" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Coffee Corner
               </Link>
               <Link 
                 href="/services/photo-studio" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Photo Studio
               </Link>
               <Link 
                 href="/services/cocktail-services" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Cocktail Services
               </Link>
               <Link 
                 href="/services/catering" 
-                className="block text-white hover:text-white transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
               >
                 Catering Services
               </Link>
