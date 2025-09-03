@@ -1,7 +1,7 @@
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
-import Gallery from "./garelly/weddings"; 
+
 
 
 export const metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="p-6">{children}
         
         </main>
-<Gallery />
+
     
         <Footer />
         

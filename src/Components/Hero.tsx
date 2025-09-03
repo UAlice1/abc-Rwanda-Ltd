@@ -11,34 +11,51 @@ const ModernLandingPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 relative overflow-hidden">
-     
-     
+    <div className="min-h-screen relative overflow-hidden" style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}>
+      {/* Background Image - Full Screen Image Background */}
+      <div className="absolute inset-0">
+        {/* Fallback background color in case image doesn't load */}
+        <div className="w-full h-full bg-black"></div>
+       <img 
+  src="/images/abceventushers(1).jpg" 
+  alt="Beautiful event venue background"
+  className="w-full h-full object-cover"
+  onError={(e) => {
+    console.log('Image failed to load');
+    const target = e.target as HTMLImageElement;
+    target.style.display = 'none';
+  }}
+/>
 
-      {/* Abstract 3D Background Elements */}
+        
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>
+
+      {/* Abstract 3D Background Elements with brand colors */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Main geometric shape - similar to the silver geometric elements */}
+        {/* Main geometric shape with brand colors */}
         <div className="absolute top-1/4 right-0 transform translate-x-1/4 rotate-12">
           <div className="relative">
             {/* Main cube structure */}
-            <div className="w-96 h-96 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-600 transform rotate-45 opacity-20"></div>
+            <div className="w-96 h-96 transform rotate-45 opacity-15" style={{ background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)' }}></div>
             
             {/* Additional geometric elements */}
-            <div className="absolute -top-20 -right-20 w-32 h-32 bg-gradient-to-br from-blue-300 to-purple-400 transform rotate-12 opacity-30"></div>
-            <div className="absolute -bottom-16 -left-16 w-24 h-24 bg-gradient-to-br from-gray-200 to-gray-500 transform -rotate-12 opacity-25"></div>
+            <div className="absolute -top-20 -right-20 w-32 h-32 transform rotate-12 opacity-20" style={{ background: 'linear-gradient(135deg, #2ca8e0, #ffffff)' }}></div>
+            <div className="absolute -bottom-16 -left-16 w-24 h-24 transform -rotate-12 opacity-15" style={{ background: 'linear-gradient(135deg, #1e75bb, #2ca8e0)' }}></div>
             
             {/* Circular element */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-white to-gray-300 rounded-full opacity-40 shadow-2xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full opacity-25 shadow-2xl" style={{ background: 'linear-gradient(135deg, #ffffff, #2ca8e0)' }}></div>
           </div>
         </div>
 
-        {/* Additional floating elements */}
-        <div className="absolute top-1/3 right-1/4 w-8 h-8 bg-blue-400 rounded-full opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-6 h-6 bg-purple-400 rounded-full opacity-25 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-2/3 right-1/6 w-4 h-4 bg-gray-300 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        {/* Additional floating elements with brand colors */}
+        <div className="absolute top-1/3 right-1/4 w-8 h-8 rounded-full opacity-40 animate-pulse" style={{ backgroundColor: '#2ca8e0' }}></div>
+        <div className="absolute bottom-1/3 right-1/3 w-6 h-6 rounded-full opacity-30 animate-pulse" style={{ backgroundColor: '#1e75bb', animationDelay: '1s' }}></div>
+        <div className="absolute top-2/3 right-1/6 w-4 h-4 bg-white rounded-full opacity-25 animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-        {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-transparent"></div>
+        {/* Gradient overlay for depth with brand colors */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.8), rgba(30,117,187,0.1), transparent)' }}></div>
       </div>
 
       {/* Main Content */}
@@ -50,7 +67,14 @@ const ModernLandingPage = () => {
           }`}>
             <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-8">
               Create unforgettable{' '}
-              <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+              <span 
+                className="bg-clip-text text-transparent"
+                style={{ 
+                  background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)',
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text'
+                }}
+              >
                 events
               </span>
             </h1>
@@ -60,7 +84,7 @@ const ModernLandingPage = () => {
           <div className={`transform transition-all duration-1000 delay-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            <p className="text-xl md:text-2xl text-gray-400 mb-12 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
               Beautiful in execution, creative in approach. We deliver stunning, elegant events that leave lasting impressions.
             </p>
           </div>
@@ -69,8 +93,25 @@ const ModernLandingPage = () => {
           <div className={`flex flex-col sm:flex-row gap-6 transform transition-all duration-1000 delay-500 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
-            {/* Book Event Button - Primary CTA */}
-            <button className="group bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 min-w-[200px]">
+            {/* Book Event Button - Primary CTA with brand colors */}
+            <button 
+  className="group text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 min-w-[200px]"
+  style={{ 
+    background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)',
+    boxShadow: '0 4px 15px rgba(44, 168, 224, 0.3)'
+  }}
+  onMouseEnter={(e) => {
+    const target = e.target as HTMLButtonElement;
+    target.style.boxShadow = '0 8px 25px rgba(44, 168, 224, 0.5)';
+  }}
+  onMouseLeave={(e) => {
+    const target = e.target as HTMLButtonElement;
+    target.style.boxShadow = '0 4px 15px rgba(44, 168, 224, 0.3)';
+  }}
+>
+  Click Me
+
+
               <Calendar size={24} />
               Book Event
               <div className="w-0 group-hover:w-5 transition-all duration-300 overflow-hidden">
@@ -82,28 +123,41 @@ const ModernLandingPage = () => {
 
             {/* Call Button - Secondary CTA */}
             <a 
-              href="tel:+250781160712"
-              className="group border-2 border-gray-600 text-gray-300 hover:border-white hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white hover:bg-opacity-5 flex items-center justify-center gap-3 min-w-[200px]"
-            >
+  href="tel:+250781160712"
+  className="group border-2 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white hover:bg-opacity-10 flex items-center justify-center gap-3 min-w-[200px]"
+  style={{ borderColor: '#2ca8e0' }}
+  onMouseEnter={(e) => {
+    const target = e.target as HTMLAnchorElement;
+    target.style.borderColor = '#ffffff';
+    target.style.backgroundColor = 'rgba(44, 168, 224, 0.1)';
+  }}
+  onMouseLeave={(e) => {
+    const target = e.target as HTMLAnchorElement;
+    target.style.borderColor = '#2ca8e0';
+    target.style.backgroundColor = 'transparent';
+  }}
+>
+  Call Us
+
               <Phone size={24} className="group-hover:rotate-12 transition-transform duration-300" />
               +250 781 160 712
             </a>
           </div>
-
-          {/* Additional Info */}
-          
         </div>
       </div>
 
-      {/* Bottom Gradient - subtle overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent opacity-50"></div>
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent opacity-60"></div>
 
       <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
         html, body {
           margin: 0;
           padding: 0;
           width: 100%;
           overflow-x: hidden;
+          font-family: 'Arial Rounded MT Bold', 'Nunito', Arial, sans-serif;
         }
         
         /* Custom animations */
@@ -124,7 +178,15 @@ const ModernLandingPage = () => {
         /* Better button hover effects */
         button:focus {
           outline: none;
-          box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+          box-shadow: 0 0 0 3px rgba(44, 168, 224, 0.5) !important;
+        }
+        
+        /* Custom gradient text fallback */
+        .gradient-text {
+          background: linear-gradient(135deg, #2ca8e0, #1e75bb);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
       `}</style>
     </div>

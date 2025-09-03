@@ -1,160 +1,237 @@
 import Link from 'next/link';
-import { Twitter, Facebook } from 'lucide-react';
+import { Twitter, Facebook, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="text-black" style={{ 
-      background: 'white',
-      fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif'
+    <footer className="bg-gray-black text-white" style={{ 
+      fontFamily: 'Arial, sans-serif'
     }}>
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          
           {/* Company Info Section */}
-          <div className="space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             {/* Logo and Company Name */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 mb-6">
               <img
                 src="/images/logo.png"
-                alt="JKO Projects Logo"
+                alt="ABC Rwanda Limited Logo"
                 className="h-12 w-12 object-contain"
               />
               <div>
-                <h3 className="font-bold text-xl text-black" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
-                 Rwanda Limited
+                <h3 className="font-bold text-2xl text-white" style={{ 
+                  fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
+                  color: '#2ca8e0'
+                }}>
+                  ABC Rwanda Limited
                 </h3>
+                <p className="text-gray-400 text-sm mt-1">Premium Event Management</p>
               </div>
             </div>
             
             {/* Company Description */}
-            <div className="space-y-1">
-              <p className="text-black leading-relaxed text-sm opacity-90">
+            <div className="space-y-4">
+              <p className="text-gray-300 leading-relaxed text-base max-w-md">
                 Beautiful in execution, creative in approach, and unique in delivering
                 unforgettable experiences. We create stunning, elegant events that leave
-                lasting
+                lasting impressions.
               </p>
-              <p className="text-black text-sm opacity-90">impressions.</p>
+              
+              {/* Contact Information */}
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center space-x-3">
+                  <MapPin size={18} className="text-blue-400 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">KN 80 st Nyarugunga, Kigali, Rwanda</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone size={18} className="text-blue-400 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">+250781160712</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail size={18} className="text-blue-400 flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">info@abcrwanda.com</span>
+                </div>
+              </div>
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex space-x-3 pt-2">
+            <div className="flex space-x-4 pt-4">
               <Link 
                 href="#" 
-                className="bg-white/20 hover:bg-white/30 rounded-full p-2.5 transition-all duration-200 hover:scale-110"
-                aria-label="Twitter"
-              >
-                <Twitter size={18} className="text-black" />
-              </Link>
-              <Link 
-                href="#" 
-                className="bg-white/20 hover:bg-white/30 rounded-full p-2.5 transition-all duration-200 hover:scale-110"
-                aria-label="Twitter"
-              >
-                <Twitter size={18} className="text-black" />
-              </Link>
-              <Link 
-                href="#" 
-                className="bg-white/20 hover:bg-white/30 rounded-full p-2.5 transition-all duration-200 hover:scale-110"
+                className="bg-gray-800 hover:bg-blue-600 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:shadow-lg"
                 aria-label="Facebook"
               >
-                <Facebook size={18} className="text-black" />
+                <Facebook size={20} className="text-white" />
+              </Link>
+              <Link 
+                href="#" 
+                className="bg-gray-800 hover:bg-blue-400 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                aria-label="Twitter"
+              >
+                <Twitter size={20} className="text-white" />
+              </Link>
+              <Link 
+                href="#" 
+                className="bg-gray-800 hover:bg-pink-600 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} className="text-white" />
+              </Link>
+              <Link 
+                href="#" 
+                className="bg-gray-800 hover:bg-blue-700 rounded-full p-3 transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={20} className="text-white" />
               </Link>
             </div>
           </div>
 
           {/* Quick Links Section */}
           <div className="space-y-6">
-            <h4 className="font-bold text-xl text-black" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
+            <h4 className="font-bold text-xl text-white mb-6" style={{ 
+              fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
+              color: '#2ca8e0'
+            }}>
               Quick Links
             </h4>
             <nav className="space-y-4">
               <Link 
                 href="/" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Home
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Home
+                </span>
               </Link>
               <Link 
                 href="/services" 
-                className="block textblack hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Services
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Services
+                </span>
               </Link>
               <Link 
                 href="/gallery" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Gallery
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Gallery
+                </span>
               </Link>
               <Link 
                 href="/about" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                About
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  About
+                </span>
               </Link>
               <Link 
                 href="/contact" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Contact
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Contact
+                </span>
               </Link>
             </nav>
           </div>
 
           {/* Our Services Section */}
           <div className="space-y-6">
-            <h4 className="font-bold text-xl text-black" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
+            <h4 className="font-bold text-xl text-white mb-6" style={{ 
+              fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
+              color: '#2ca8e0'
+            }}>
               Our Services
             </h4>
             <nav className="space-y-4">
               <Link 
                 href="/services/event-planning" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Event Planning
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Event Planning
+                </span>
               </Link>
               <Link 
                 href="/services/professional-ushers" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Professional Ushers
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Professional Ushers
+                </span>
               </Link>
               <Link 
                 href="/services/coffee-corner" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Coffee Corner
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Coffee Corner
+                </span>
               </Link>
               <Link 
                 href="/services/photo-studio" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Photo Studio
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Photo Studio
+                </span>
               </Link>
               <Link 
                 href="/services/cocktail-services" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Cocktail Services
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Cocktail Services
+                </span>
               </Link>
               <Link 
                 href="/services/catering" 
-                className="block text-black hover:text-black transition-colors duration-200 text-sm font-medium opacity-90 hover:opacity-100"
+                className="block text-gray-300 hover:text-white hover:translate-x-2 transition-all duration-200 text-base font-medium group"
               >
-                Catering Services
+                <span className="flex items-center">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 group-hover:bg-white transition-colors"></span>
+                  Catering Services
+                </span>
               </Link>
             </nav>
           </div>
         </div>
+        
+      </div>
 
-        {/* Bottom Section with Border */}
-        <div className="border-t border-white/30 mt-12 pt-8">
+      {/* Bottom Section with Enhanced Design */}
+      <div className="bg-black border-t border-gray-700">
+        <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-white text-sm opacity-90">
-              © 2025 abc Rwanda Limited. All rights reserved.
-            </p>
-            <p className="text-white text-sm font-medium" style={{ fontFamily: 'Arial, Arial Rounded MT Bold, sans-serif' }}>
-              Beautiful • Creative • Unforgettable
-            </p>
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
+              <p className="text-white text-sm">
+                © 2025 ABC Rwanda Limited. All rights reserved.
+              </p>
+              <div className="flex space-x-4">
+                <Link href="/privacy" className="text-black hover:text-white text-sm transition-colors">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms" className="text-white hover:text-white text-sm transition-colors">
+                  Terms of Service
+                </Link>
+              </div>
+            </div>
+          
           </div>
         </div>
       </div>
