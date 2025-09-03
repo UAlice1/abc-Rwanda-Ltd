@@ -12,7 +12,7 @@ export default function About() {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     
-    // Auto-cycle through core values
+   
     const interval = setInterval(() => {
       setActiveValue(prev => (prev + 1) % 3);
     }, 3000);
@@ -25,9 +25,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}>
-      {/* Hero Section with Background Image */}
       <div className="relative min-h-screen flex items-center justify-center">
-        {/* Background Image with Parallax Effect */}
         <div 
           className="absolute inset-0 transition-transform duration-300"
           style={{ transform: `translateY(${scrollY * 0.5}px)` }}
@@ -37,7 +35,6 @@ export default function About() {
             alt="Elegant event venue background"
             className="w-full h-full object-cover"
           />
-          {/* Dynamic Gradient Overlay */}
           <div 
             className="absolute inset-0"
             style={{
@@ -46,7 +43,6 @@ export default function About() {
           ></div>
         </div>
 
-        {/* Floating Geometric Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
             className="absolute top-20 right-10 w-32 h-32 rounded-full opacity-20"

@@ -1,8 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Phone, Calendar, Menu, X, Star } from 'lucide-react';
+import Hero from '@/app/page';
 
-const ModernLandingPage = () => {
+const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -32,12 +33,12 @@ const ModernLandingPage = () => {
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
 
-      {/* Abstract 3D Background Elements with brand colors */}
+     
       <div className="absolute inset-0 overflow-hidden">
-        {/* Main geometric shape with brand colors */}
+       
         <div className="absolute top-1/4 right-0 transform translate-x-1/4 rotate-12">
           <div className="relative">
-            {/* Main cube structure */}
+         
             <div className="w-96 h-96 transform rotate-45 opacity-15" style={{ background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)' }}></div>
             
             {/* Additional geometric elements */}
@@ -193,4 +194,4 @@ const ModernLandingPage = () => {
   );
 };
 
-export default ModernLandingPage;
+export default HomePage;
