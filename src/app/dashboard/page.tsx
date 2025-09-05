@@ -29,13 +29,14 @@ import {
   XCircle,
   AlertCircle
 } from 'lucide-react';
+import { ReactElement } from "react";
 
 interface AdminDashboardProps {
   stats?: Array<{
     title: string;
     value: string;
     change: string;
-    icon: any;
+    icon: React.ElementType; // ✅ replaces 'any'
     color: string;
   }>;
   bookings?: Array<{

@@ -42,17 +42,28 @@ const galleryAPI = {
       
       const data = await response.json();
       
-      // Transform Payload response to match our interface
-      const images = data.docs?.map((item: any) => ({
-        id: item.id,
-        src: item.image?.url || item.image, // Payload image field
-        alt: item.alt || item.title,
-        title: item.title,
-        description: item.description,
-        category: item.category,
-        uploadedAt: item.createdAt
-      })) || [];
-      
+    // Define the shape of a single document from your Payload response
+interface PayloadDoc {
+  id: string;
+  image?: { url: string } | string;
+  alt?: string;
+  title: string;
+  description?: string;
+  category?: string;
+  createdAt: string;
+}
+
+// Transform Payload response to match our interface
+const images = data.docs?.map((item: PayloadDoc) => ({
+  id: item.id,
+  src: typeof item.image === "object" ? item.image.url : item.image || "",
+  alt: item.alt || item.title,
+  title: item.title,
+  description: item.description,
+  category: item.category,
+  uploadedAt: item.createdAt
+})) || [];
+  
       return {
         images,
         hasMore: data.hasNextPage || false,
@@ -363,18 +374,9 @@ export default function PayloadGallery() {
         ) : !loading && galleryImages.length === 0 && !error ? (
           <div className="text-center py-20">
             <Camera className="w-20 h-20 mx-auto mb-6 text-gray-400" />
-            <h3 className="text-2xl font-bold text-gray-600 mb-4">No images found</h3>
-            <p className="text-gray-500 mb-6">
-              {activeCategory === 'all' 
-                ? 'No images have been uploaded yet. Contact admin to add images.' 
-                : 'No images found in this category. Try selecting a different category or contact admin to add images.'
-              }
-            </p>
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-blue-700 text-sm">
-                <strong>For Admin:</strong> Connect your Payload CMS API at <code className="bg-blue-100 px-2 py-1 rounded">/api/gallery</code> to enable image uploads.
-              </p>
-            </div>
+            <h3 className="text-2xl font-bold text-gray-600 mb-4">No images found yet</h3>
+           
+            
           </div>
         ) : null}
 
