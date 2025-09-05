@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 
-const TestimonialsPage = () => {
+const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const testimonialsPerPage = 3;
 
@@ -212,4 +212,4 @@ const getAvatarColor = (testimonialId) => {
   );
 };
 
-export default TestimonialsPage;
+export default Testimonials;

@@ -30,37 +30,57 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-// Sample data
-const stats = [
-  { title: 'Total Bookings', value: '156', change: '+12%', icon: Calendar, color: 'bg-blue-500' },
-  { title: 'Gallery Images', value: '342', change: '+8%', icon: Image, color: 'bg-green-500' },
-  { title: 'New Inquiries', value: '23', change: '+15%', icon: MessageCircle, color: 'bg-yellow-500' },
-  { title: 'Active Events', value: '12', change: '+5%', icon: Users, color: 'bg-purple-500' }
-];
+interface AdminDashboardProps {
+  stats?: Array<{
+    title: string;
+    value: string;
+    change: string;
+    icon: any;
+    color: string;
+  }>;
+  bookings?: Array<{
+    id: number;
+    client: string;
+    service: string;
+    date: string;
+    status: string;
+    amount: string;
+  }>;
+  inquiries?: Array<{
+    id: number;
+    name: string;
+    email: string;
+    subject: string;
+    date: string;
+    status: string;
+  }>;
+  galleryImages?: Array<{
+    id: number;
+    title: string;
+    category: string;
+    uploadDate: string;
+    views: number;
+  }>;
+  companyInfo?: {
+    name: string;
+    phone: string;
+    address: string;
+    socialMedia: string;
+  };
+}
 
-const recentBookings = [
-  { id: 1, client: 'John Uwimana', service: 'Diamond Package', date: '2025-01-15', status: 'confirmed', amount: '700,000 FRW' },
-  { id: 2, client: 'Mary Mukamana', service: 'Platinum Package', date: '2025-01-20', status: 'pending', amount: '1,700,000 FRW' },
-  { id: 3, client: 'David Habimana', service: 'Gold Package', date: '2025-01-25', status: 'confirmed', amount: '1,200,000 FRW' },
-  { id: 4, client: 'Sarah Uwera', service: 'Diamond Package', date: '2025-02-01', status: 'pending', amount: '700,000 FRW' }
-];
-
-const recentInquiries = [
-  { id: 1, name: 'Alice Mutesi', email: 'alice@example.com', subject: 'Wedding Package Inquiry', date: '2025-01-10', status: 'new' },
-  { id: 2, name: 'Robert Niyonzima', email: 'robert@example.com', subject: 'Corporate Event', date: '2025-01-09', status: 'replied' },
-  { id: 3, name: 'Grace Uwimana', email: 'grace@example.com', subject: 'Photo Service', date: '2025-01-08', status: 'new' }
-];
-
-const galleryImages = [
-  { id: 1, title: 'Wedding Ceremony', category: 'weddings', uploadDate: '2025-01-05', views: 234 },
-  { id: 2, title: 'Corporate Event', category: 'corporate', uploadDate: '2025-01-04', views: 189 },
-  { id: 3, title: 'Birthday Party', category: 'social', uploadDate: '2025-01-03', views: 156 },
-  { id: 4, title: 'Reception Setup', category: 'weddings', uploadDate: '2025-01-02', views: 298 }
-];
-
-interface AdminDashboardProps {}
-
-export default function AdminDashboard({}: AdminDashboardProps) {
+export default function AdminDashboard({ 
+  stats = [], 
+  bookings = [], 
+  inquiries = [], 
+  galleryImages = [],
+  companyInfo = {
+    name: '',
+    phone: '',
+    address: '',
+    socialMedia: ''
+  }
+}: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [selectedInquiry, setSelectedInquiry] = useState(null);
@@ -88,20 +108,28 @@ export default function AdminDashboard({}: AdminDashboardProps) {
     <div className="space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
-                <p className="text-sm text-green-600 mt-1">{stat.change} from last month</p>
-              </div>
-              <div className={`${stat.color} p-3 rounded-lg`}>
-                <stat.icon className="h-6 w-6 text-white" />
+        {stats.length > 0 ? (
+          stats.map((stat, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
+                  <p className="text-sm text-green-600 mt-1">{stat.change} from last month</p>
+                </div>
+                <div className={`${stat.color} p-3 rounded-lg`}>
+                  <stat.icon className="h-6 w-6 text-white" />
+                </div>
               </div>
             </div>
+          ))
+        ) : (
+          <div className="col-span-full bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
+            <BarChart3 className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+            <p className="text-lg font-medium text-gray-900 mb-2">No Statistics Available</p>
+            <p className="text-gray-600">Statistics will appear here once you have data</p>
           </div>
-        ))}
+        )}
       </div>
 
       {/* Recent Activity */}
@@ -112,23 +140,30 @@ export default function AdminDashboard({}: AdminDashboardProps) {
             <h3 className="text-lg font-semibold text-gray-900">Recent Bookings</h3>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
-              {recentBookings.map((booking) => (
-                <div key={booking.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div>
-                    <p className="font-medium text-gray-900">{booking.client}</p>
-                    <p className="text-sm text-gray-600">{booking.service}</p>
-                    <p className="text-sm text-gray-500">{booking.date}</p>
+            {bookings.length > 0 ? (
+              <div className="space-y-4">
+                {bookings.slice(0, 4).map((booking) => (
+                  <div key={booking.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                      <p className="font-medium text-gray-900">{booking.client}</p>
+                      <p className="text-sm text-gray-600">{booking.service}</p>
+                      <p className="text-sm text-gray-500">{booking.date}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-gray-900">{booking.amount}</p>
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(booking.status)}`}>
+                        {booking.status}
+                      </span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-gray-900">{booking.amount}</p>
-                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(booking.status)}`}>
-                      {booking.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <Calendar className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-600">No recent bookings</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -138,20 +173,27 @@ export default function AdminDashboard({}: AdminDashboardProps) {
             <h3 className="text-lg font-semibold text-gray-900">Recent Inquiries</h3>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
-              {recentInquiries.map((inquiry) => (
-                <div key={inquiry.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                  <div>
-                    <p className="font-medium text-gray-900">{inquiry.name}</p>
-                    <p className="text-sm text-gray-600">{inquiry.subject}</p>
-                    <p className="text-sm text-gray-500">{inquiry.date}</p>
+            {inquiries.length > 0 ? (
+              <div className="space-y-4">
+                {inquiries.slice(0, 3).map((inquiry) => (
+                  <div key={inquiry.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                    <div>
+                      <p className="font-medium text-gray-900">{inquiry.name}</p>
+                      <p className="text-sm text-gray-600">{inquiry.subject}</p>
+                      <p className="text-sm text-gray-500">{inquiry.date}</p>
+                    </div>
+                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(inquiry.status)}`}>
+                      {inquiry.status}
+                    </span>
                   </div>
-                  <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(inquiry.status)}`}>
-                    {inquiry.status}
-                  </span>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <MessageCircle className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <p className="text-gray-600">No recent inquiries</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -176,50 +218,58 @@ export default function AdminDashboard({}: AdminDashboardProps) {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {recentBookings.map((booking) => (
-                <tr key={booking.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="font-medium text-gray-900">{booking.client}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-600">{booking.service}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-600">{booking.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{booking.amount}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(booking.status)}`}>
-                      {booking.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <div className="flex space-x-2">
-                      <button className="text-blue-600 hover:text-blue-900">
-                        <Eye className="h-4 w-4" />
-                      </button>
-                      <button className="text-green-600 hover:text-green-900">
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button className="text-red-600 hover:text-red-900">
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </td>
+        {bookings.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {bookings.map((booking) => (
+                  <tr key={booking.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="font-medium text-gray-900">{booking.client}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-600">{booking.service}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-600">{booking.date}</td>
+                    <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-900">{booking.amount}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(booking.status)}`}>
+                        {booking.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <div className="flex space-x-2">
+                        <button className="text-blue-600 hover:text-blue-900">
+                          <Eye className="h-4 w-4" />
+                        </button>
+                        <button className="text-green-600 hover:text-green-900">
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button className="text-red-600 hover:text-red-900">
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <Calendar className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <p className="text-xl font-medium text-gray-900 mb-2">No Bookings Found</p>
+            <p className="text-gray-600">Bookings will appear here when customers make reservations</p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -231,50 +281,57 @@ export default function AdminDashboard({}: AdminDashboardProps) {
         <div className="flex space-x-3">
           <div className="relative">
             <Search className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <input 
-  type="text" 
-  placeholder="Search inquiries..." 
-  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg 
-             focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
-/>
-
+            <input 
+              type="text" 
+              placeholder="Search inquiries..." 
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg 
+                         focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
+            />
           </div>
         </div>
       </div>
 
       <div className="grid gap-6">
-        {recentInquiries.map((inquiry) => (
-          <div key={inquiry.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">{inquiry.name}</h3>
-                <p className="text-sm text-gray-600 flex items-center mt-1">
-                  <Mail className="h-4 w-4 mr-1" />
-                  {inquiry.email}
-                </p>
+        {inquiries.length > 0 ? (
+          inquiries.map((inquiry) => (
+            <div key={inquiry.id} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">{inquiry.name}</h3>
+                  <p className="text-sm text-gray-600 flex items-center mt-1">
+                    <Mail className="h-4 w-4 mr-1" />
+                    {inquiry.email}
+                  </p>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(inquiry.status)}`}>
+                    {inquiry.status}
+                  </span>
+                  <span className="text-sm text-gray-500">{inquiry.date}</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(inquiry.status)}`}>
-                  {inquiry.status}
-                </span>
-                <span className="text-sm text-gray-500">{inquiry.date}</span>
+              <div className="mb-4">
+                <p className="font-medium text-gray-900 mb-2">{inquiry.subject}</p>
+                <p className="text-gray-600">Inquiry details will be displayed here when available.</p>
+              </div>
+              <div className="flex justify-end space-x-2">
+                <button className="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                  Mark as Read
+                </button>
+                <button className="px-4 py-2 text-white rounded-lg transition-colors hover:opacity-90"
+                        style={{backgroundColor: '#2ca8e0'}}>
+                  Reply
+                </button>
               </div>
             </div>
-            <div className="mb-4">
-              <p className="font-medium text-gray-900 mb-2">{inquiry.subject}</p>
-              <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-            <div className="flex justify-end space-x-2">
-              <button className="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                Mark as Read
-              </button>
-              <button className="px-4 py-2 text-white rounded-lg transition-colors hover:opacity-90"
-                      style={{backgroundColor: '#2ca8e0'}}>
-                Reply
-              </button>
-            </div>
+          ))
+        ) : (
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-12 text-center">
+            <MessageCircle className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <p className="text-xl font-medium text-gray-900 mb-2">No Inquiries Found</p>
+            <p className="text-gray-600">Customer inquiries will appear here when received</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
@@ -302,29 +359,37 @@ export default function AdminDashboard({}: AdminDashboardProps) {
 
       {/* Gallery Grid */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image) => (
-            <div key={image.id} className="group relative bg-gray-100 rounded-lg overflow-hidden aspect-square">
-              <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                <Camera className="h-8 w-8 text-gray-400" />
-              </div>
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <div className="flex space-x-2">
-                  <button className="p-2 bg-white rounded-full text-gray-700 hover:text-blue-600">
-                    <Eye className="h-4 w-4" />
-                  </button>
-                  <button className="p-2 bg-white rounded-full text-gray-700 hover:text-red-600">
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+        {galleryImages.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {galleryImages.map((image) => (
+              <div key={image.id} className="group relative bg-gray-100 rounded-lg overflow-hidden aspect-square">
+                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                  <Camera className="h-8 w-8 text-gray-400" />
+                </div>
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-200 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <div className="flex space-x-2">
+                    <button className="p-2 bg-white rounded-full text-gray-700 hover:text-blue-600">
+                      <Eye className="h-4 w-4" />
+                    </button>
+                    <button className="p-2 bg-white rounded-full text-gray-700 hover:text-red-600">
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <p className="text-white text-sm font-medium truncate">{image.title}</p>
+                  <p className="text-white text-xs opacity-75">{image.views} views</p>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
-                <p className="text-white text-sm font-medium truncate">{image.title}</p>
-                <p className="text-white text-xs opacity-75">{image.views} views</p>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <Image className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <p className="text-xl font-medium text-gray-900 mb-2">No Images Found</p>
+            <p className="text-gray-600">Upload images to build your gallery</p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -335,77 +400,63 @@ export default function AdminDashboard({}: AdminDashboardProps) {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Company Information */}
-     <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-  <h3 className="text-lg font-semibold text-gray-900 mb-4">Company Information</h3>
-  <div className="space-y-4">
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
-      <input 
-        type="text" 
-        defaultValue="ABC RWANDA LIMITED"
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg 
-                   focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
-      />
-    </div>
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-      <input 
-        type="text" 
-        defaultValue="+250781160712"
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg 
-                   focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
-      />
-    </div>
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
-      <input 
-        type="text" 
-        defaultValue="KN 80 st Nyarugenge, Kigali"
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg 
-                   focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
-      />
-    </div>
-    <div>
-      <label className="block text-sm font-medium text-gray-700 mb-2">Social Media</label>
-      <input 
-        type="text" 
-        defaultValue="@abc_event_ushers"
-        className="w-full px-3 py-2 border border-gray-300 rounded-lg 
-                   focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
-      />
-    </div>
-  </div>
-</div>
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Company Information</h3>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+              <input 
+                type="text" 
+                defaultValue={companyInfo.name}
+                placeholder="Enter company name"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg 
+                           focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input 
+                type="text" 
+                defaultValue={companyInfo.phone}
+                placeholder="Enter phone number"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg 
+                           focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
+              <input 
+                type="text" 
+                defaultValue={companyInfo.address}
+                placeholder="Enter address"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg 
+                           focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Social Media</label>
+              <input 
+                type="text" 
+                defaultValue={companyInfo.socialMedia}
+                placeholder="Enter social media handle"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg 
+                           focus:ring-2 focus:ring-[#2ca8e0] focus:border-transparent outline-none"
+              />
+            </div>
+          </div>
+        </div>
 
-
-        {/* Package Settings */}
+        {/* Package Settings - Now dynamic placeholder */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Package Settings</h3>
-          <div className="space-y-4">
-            <div className="p-4 border border-gray-200 rounded-lg">
-              <div className="flex justify-between items-center mb-2">
-                <h4 className="font-medium text-gray-900">Diamond Package</h4>
-                <span className="text-lg font-bold" style={{color: '#2ca8e0'}}>700,000 FRW</span>
-              </div>
-              <p className="text-sm text-gray-600">200-500 guests</p>
-              <button className="mt-2 text-sm text-blue-600 hover:text-blue-800">Edit Package</button>
-            </div>
-            <div className="p-4 border border-gray-200 rounded-lg">
-              <div className="flex justify-between items-center mb-2">
-                <h4 className="font-medium text-gray-900">Gold Package</h4>
-                <span className="text-lg font-bold" style={{color: '#2ca8e0'}}>1,200,000 FRW</span>
-              </div>
-              <p className="text-sm text-gray-600">500-800 guests</p>
-              <button className="mt-2 text-sm text-blue-600 hover:text-blue-800">Edit Package</button>
-            </div>
-            <div className="p-4 border border-gray-200 rounded-lg">
-              <div className="flex justify-between items-center mb-2">
-                <h4 className="font-medium text-gray-900">Platinum Package</h4>
-                <span className="text-lg font-bold" style={{color: '#2ca8e0'}}>1,700,000 FRW</span>
-              </div>
-              <p className="text-sm text-gray-600">800-1000 guests</p>
-              <button className="mt-2 text-sm text-blue-600 hover:text-blue-800">Edit Package</button>
-            </div>
+          <div className="text-center py-8">
+            <Settings className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+            <p className="text-lg font-medium text-gray-900 mb-2">Package Configuration</p>
+            <p className="text-gray-600 mb-4">Set up your service packages and pricing here</p>
+            <button className="px-4 py-2 text-white rounded-lg transition-colors hover:opacity-90"
+                    style={{backgroundColor: '#2ca8e0'}}>
+              Add New Package
+            </button>
           </div>
         </div>
       </div>
@@ -430,6 +481,8 @@ export default function AdminDashboard({}: AdminDashboardProps) {
     }
   };
 
+  const unreadInquiries = inquiries.filter(inquiry => inquiry.status === 'new').length;
+
   return (
     <div className="min-h-screen bg-gray-50" style={{fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif'}}>
       {/* Sidebar */}
@@ -437,7 +490,9 @@ export default function AdminDashboard({}: AdminDashboardProps) {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-center h-16 px-6 border-b border-gray-200">
-            <h1 className="text-xl font-bold text-black">ABC RWANDA</h1>
+            <h1 className="text-xl font-bold text-black">
+              {companyInfo.name || 'ABC RWANDA'}
+            </h1>
           </div>
           
           {/* Navigation */}
@@ -487,17 +542,19 @@ export default function AdminDashboard({}: AdminDashboardProps) {
                 {menuItems.find(item => item.id === activeTab)?.name || 'Dashboard'}
               </h1>
               <p className="text-sm text-gray-600 mt-1">
-                Welcome back! Here's what's happening with ABC Rwanda Limited.
+                Welcome back! Here's what's happening with {companyInfo.name || 'your business'}.
               </p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <button className="p-2 text-gray-600 hover:text-gray-900 relative">
                   <MessageCircle className="h-6 w-6" />
-                  <span className="absolute -top-1 -right-1 h-4 w-4 text-xs rounded-full text-white flex items-center justify-center"
-                        style={{backgroundColor: '#2ca8e0'}}>
-                    3
-                  </span>
+                  {unreadInquiries > 0 && (
+                    <span className="absolute -top-1 -right-1 h-4 w-4 text-xs rounded-full text-white flex items-center justify-center"
+                          style={{backgroundColor: '#2ca8e0'}}>
+                      {unreadInquiries}
+                    </span>
+                  )}
                 </button>
               </div>
               <div className="h-8 w-px bg-gray-300"></div>
@@ -509,7 +566,6 @@ export default function AdminDashboard({}: AdminDashboardProps) {
           </div>
         </header>
         
-       
         <main className="p-6">
           {renderContent()}
         </main>

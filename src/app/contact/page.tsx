@@ -273,7 +273,7 @@ export default function Contact() {
               {/* Why Contact Us */}
               <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
                 <h3 className="text-2xl font-bold mb-6 text-black">
-                  Why Contact Us?
+                Contact Us!
                 </h3>
                 <div className="space-y-4">
                   {[

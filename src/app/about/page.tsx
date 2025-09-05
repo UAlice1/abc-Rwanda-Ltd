@@ -89,7 +89,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* Stats with Images */}
           <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 transform transition-all duration-1500 delay-500 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
           }`}>
@@ -104,7 +103,7 @@ export default function About() {
                 icon: Users, 
                 number: "100%", 
                 label: "Client Satisfaction", 
-                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=200&fit=crop&crop=center"
+                image: "/images/abceventushers(51).jpg"
               },
               { 
                 icon: Award, 
@@ -180,7 +179,7 @@ export default function About() {
                 className="px-8 py-4 rounded-lg font-semibold text-lg text-white hover:scale-105 transition-all duration-300 flex items-center gap-3"
                 style={{ background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)' }}
               >
-                Learn More About Us
+                 About Us
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -189,7 +188,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop&crop=center"
+                  src="/images/abceventushers(51).jpg"
                   alt="Event Planning"
                   className="w-full h-48 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
@@ -198,7 +197,7 @@ export default function About() {
                   }}
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&h=250&fit=crop&crop=center"
+                  src="/images/abceventushers(12).jpg"
                   alt="Wedding Services"
                   className="w-full h-32 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
@@ -209,7 +208,7 @@ export default function About() {
               </div>
               <div className="space-y-4 mt-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop&crop=center"
+                  src="/images/abceventushers(5).jpg"
                   alt="Professional Staff"
                   className="w-full h-32 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
@@ -257,14 +256,14 @@ export default function About() {
                 icon: Zap, 
                 title: "Creative Approach", 
                 description: "Innovative solutions tailored to your unique requirements and vision",
-                image: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=500&h=400&fit=crop&crop=center",
+                image: "/images/abceventushers(12).jpg",
                 color: "#1e75bb"
               },
               { 
                 icon: Heart, 
                 title: "Unforgettable Experiences", 
                 description: "Creating lasting memories that you and your guests will cherish forever",
-                image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=500&h=400&fit=crop&crop=center",
+                image: "/images/abceventushers(40).jpg",
                 color: "#2ca8e0"
               }
             ].map((value, index) => (
@@ -352,7 +351,7 @@ export default function About() {
               <div className="p-6 md:p-10">
                 <div className="relative mb-6 md:mb-8">
                   <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=300&fit=crop&crop=center"
+                    src="/images/abceventushers(11).jpg"
                     alt="Our Mission"
                     className="w-full h-40 md:h-48 object-cover rounded-xl md:rounded-2xl mb-4 md:mb-6"
                     onError={(e) => {
@@ -392,7 +391,7 @@ export default function About() {
                     className="w-full h-40 md:h-48 object-cover rounded-xl md:rounded-2xl mb-4 md:mb-6"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "https://via.placeholder.com/400x300/1e75bb/ffffff?text=Our+Vision";
+                      target.src = "";
                     }}
                   />
                   <div 
@@ -442,7 +441,7 @@ export default function About() {
               { 
                 title: "Kigali Headquarters", 
                 description: "Our main office serving as the hub of operations across Rwanda",
-                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=400&fit=crop&crop=center",
+                image: "/images/abceventushers1.jpg",
                 location: "Kigali City Center",
                 phone: "+250781160712",
                 email: "info@abcrwanda.com"
@@ -450,7 +449,7 @@ export default function About() {
               { 
                 title: "Rubavu Branch", 
                 description: "Bringing our premium services to the Western Province",
-                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop&crop=center",
+                image: "/images/abceventushers(12).jpg",
                 location: "Rubavu District",
                 phone: "+250781160712",
                 email: "info@abcrwanda.com"
@@ -458,7 +457,7 @@ export default function About() {
               { 
                 title: "Rusizi Branch", 
                 description: "Expanding our reach with excellence across all regions",
-                image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&h=400&fit=crop&crop=center",
+                image: "/images/abceventushers(12).jpg",
                 location: "Rusizi District",
                 phone: "+250781160712",
                 email: "info@abcrwanda.com"
@@ -522,7 +521,7 @@ export default function About() {
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
         
-        html, body {
+         body {
           margin: 0;
           padding: 0;
           width: 100%;
@@ -539,9 +538,7 @@ export default function About() {
           animation: float 6s ease-in-out infinite;
         }
         
-        html {
-          scroll-behavior: smooth;
-        }
+       
       `}</style>
     </div>
   );
