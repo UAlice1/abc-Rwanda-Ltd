@@ -92,8 +92,7 @@ const renderStars = (rating = 0) => {
     </span>
   ));
 };
-
-const getAvatarColor = (testimonialId) => {
+const getAvatarColor = (testimonialId: number) => {
   const colors = [
     'bg-blue-500',
     'bg-blue-500', 
@@ -103,9 +102,9 @@ const getAvatarColor = (testimonialId) => {
     'bg-blue-500'
   ];
 
-  const id = Number(testimonialId) || 0;
-  return colors[id % colors.length];
+  return colors[testimonialId % colors.length];
 };
+
 
 
   return (

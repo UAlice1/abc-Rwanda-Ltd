@@ -53,19 +53,20 @@ const EnhancedHeroLanding = () => {
 
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating particles */}
        {[...Array(6)].map((_, i) => (
   <div
     key={i}
     className="absolute animate-float opacity-20"
     style={{
-      left: Math.random() * 100 + '%',
-      top: Math.random() * 100 + '%',
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
       animationDelay: `${i * 0.8}s`,
       animationDuration: `${4 + i}s`
     }}
-  />
+  ></div>
 ))}
+
+ 
         {/* Geometric shapes */}
         <div className="absolute top-1/4 right-0 transform translate-x-1/4 rotate-12 opacity-10 hidden lg:block">
           <div className="relative">
