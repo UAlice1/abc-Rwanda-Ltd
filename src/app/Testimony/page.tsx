@@ -81,17 +81,17 @@ const Testimonials = () => {
   };
 
   const currentTestimonials = testimonials.slice(currentIndex, currentIndex + testimonialsPerPage);
-
-const renderStars = (rating = 0) => {
+const renderStars = (rating: number = 0) => {
   return Array.from({ length: 5 }, (_, i) => (
     <span
       key={i}
-      className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+      className={`text-lg ${i < rating ? 'text-blue-950' : 'text-gray-300'}`}
     >
       ★
     </span>
   ));
 };
+
 const getAvatarColor = (testimonialId: number) => {
   const colors = [
     'bg-blue-500',
