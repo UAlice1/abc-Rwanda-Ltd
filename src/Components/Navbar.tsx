@@ -206,7 +206,7 @@ const Navbar = () => {
                       <button
                         onClick={toggleGallery}
                         className={`flex items-center space-x-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-gray-50 ${
-                          isActiveRoute(item.href) ? 'text-white shadow-lg' : 'text-black hover:text-blue-600'
+                          isActiveRoute(item.href) ? 'text-white shadow-lg' : 'text-black hover:text-blue-900'
                         }`}
                         style={{ backgroundColor: isActiveRoute(item.href) ? '#2ca8e0' : undefined }}
                       >
