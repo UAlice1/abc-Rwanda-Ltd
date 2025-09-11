@@ -138,7 +138,7 @@ export default function About() {
             </div>
 
             {/* Image Gallery */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid  grid-cols-2 gap-2 sm:gap-4">
               <div className="space-y-3 sm:space-y-4">
                 <img 
                   src="/images/abceventushers(51).jpg"
