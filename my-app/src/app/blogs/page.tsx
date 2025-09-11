@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { mockBlogPosts } from '@/lib/mockData'; // must match the file path
+import { mockBlogPosts } from '../../lib/mockData'; // fixed path
 
 export default function Blog() {
   return (
