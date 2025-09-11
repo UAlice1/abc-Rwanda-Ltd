@@ -134,13 +134,7 @@ export default function About() {
                 </p>
               </div>
 
-              <button 
-                className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg text-white hover:scale-105 transition-all duration-300 flex items-center gap-3"
-                style={{ background: 'linear-gradient(135deg, #2ca8e0, #1e75bb)' }}
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
+    
             </div>
 
             {/* Image Gallery */}
