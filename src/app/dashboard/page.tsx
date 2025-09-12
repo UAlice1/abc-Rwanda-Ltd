@@ -27,160 +27,60 @@ import {
   Home
 } from 'lucide-react';
 
-interface StatCard {
-  title: string;
-  value: string;
-  change: string;
-  icon: React.ElementType;
-  color: string;
+interface AdminDashboardProps {
+  stats?: Array<{
+    title: string;
+    value: string;
+    change: string;
+    icon: React.ElementType;
+    color: string;
+  }>;
+  bookings?: Array<{
+    id: number;
+    client: string;
+    service: string;
+    date: string;
+    status: string;
+    amount: string;
+  }>;
+  inquiries?: Array<{
+    id: number;
+    name: string;
+    email: string;
+    subject: string;
+    date: string;
+    status: string;
+  }>;
+  galleryImages?: Array<{
+    id: number;
+    title: string;
+    category: string;
+    uploadDate: string;
+    views: number;
+  }>;
+  companyInfo?: {
+    name: string;
+    phone: string;
+    address: string;
+    socialMedia: string;
+  };
 }
 
-interface Booking {
-  id: number;
-  client: string;
-  service: string;
-  date: string;
-  status: string;
-  amount: string;
-}
-
-interface Inquiry {
-  id: number;
-  name: string;
-  email: string;
-  subject: string;
-  date: string;
-  status: string;
-}
-
-interface GalleryImage {
-  id: number;
-  title: string;
-  category: string;
-  uploadDate: string;
-  views: number;
-}
-
-interface CompanyInfo {
-  name: string;
-  phone: string;
-  address: string;
-  socialMedia: string;
-}
-
-export default function AdminDashboard() {
+export default function AdminDashboard({ 
+  stats = [], 
+  bookings = [], 
+  inquiries = [], 
+  galleryImages = [],
+  companyInfo = {
+    name: '',
+    phone: '',
+    address: '',
+    socialMedia: ''
+  }
+}: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
-
-  // Mock data - in a real app, this would come from an API or database
-  const stats: StatCard[] = [
-    {
-      title: 'Total Bookings',
-      value: '124',
-      change: '+12%',
-      icon: Calendar,
-      color: '#2ca8e0'
-    },
-    {
-      title: 'New Inquiries',
-      value: '18',
-      change: '+5%',
-      icon: MessageCircle,
-      color: '#2ca8e0'
-    },
-    {
-      title: 'Gallery Images',
-      value: '56',
-      change: '+8%',
-      icon: Image,
-      color: '#2ca8e0'
-    },
-    {
-      title: 'Monthly Revenue',
-      value: '$4,250',
-      change: '+15%',
-      icon: BarChart3,
-      color: '#2ca8e0'
-    }
-  ];
-
-  const bookings: Booking[] = [
-    {
-      id: 1,
-      client: 'John Doe',
-      service: 'Wedding Photography',
-      date: '2024-01-15',
-      status: 'confirmed',
-      amount: '$2,500'
-    },
-    {
-      id: 2,
-      client: 'Jane Smith',
-      service: 'Corporate Event',
-      date: '2024-01-20',
-      status: 'pending',
-      amount: '$1,800'
-    },
-    {
-      id: 3,
-      client: 'Mike Johnson',
-      service: 'Portrait Session',
-      date: '2024-01-25',
-      status: 'confirmed',
-      amount: '$500'
-    }
-  ];
-
-  const inquiries: Inquiry[] = [
-    {
-      id: 1,
-      name: 'Sarah Wilson',
-      email: 'sarah@example.com',
-      subject: 'Wedding Photography Inquiry',
-      date: '2024-01-10',
-      status: 'new'
-    },
-    {
-      id: 2,
-      name: 'David Brown',
-      email: 'david@example.com',
-      subject: 'Event Coverage Quote',
-      date: '2024-01-08',
-      status: 'replied'
-    }
-  ];
-
-  const galleryImages: GalleryImage[] = [
-    {
-      id: 1,
-      title: 'Wedding Ceremony',
-      category: 'Weddings',
-      uploadDate: '2024-01-01',
-      views: 245
-    },
-    {
-      id: 2,
-      title: 'Corporate Team',
-      category: 'Corporate',
-      uploadDate: '2024-01-03',
-      views: 156
-    },
-    {
-      id: 3,
-      title: 'Portrait Session',
-      category: 'Portraits',
-      uploadDate: '2024-01-05',
-      views: 89
-    }
-  ];
-
-  const companyInfo: CompanyInfo = {
-    name: 'ABC RWANDA',
-    phone: '+250 123 456 789',
-    address: 'Kigali, Rwanda',
-    socialMedia: '@abcrwanda'
-  };
 
   const menuItems = [
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
