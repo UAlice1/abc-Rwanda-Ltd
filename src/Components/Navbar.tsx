@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -54,27 +55,27 @@ const Navbar = () => {
     serviceType: '',
     preferredDate: '',
     preferredTime: '',
-    extraDetails: ''
+    extraDetails: '',
   });
 
   const [adminLoginData, setAdminLoginData] = useState<AdminLoginData>({
     username: '',
-    password: ''
+    password: '',
   });
 
   const [formStatus, setFormStatus] = useState<FormStatus>({
     type: 'idle',
-    message: ''
+    message: '',
   });
 
   const [adminStatus, setAdminStatus] = useState<AdminLoginStatus>({
     type: 'idle',
-    message: ''
+    message: '',
   });
 
   const serviceTypes = [
     'Diamond Wedding Package',
-    'Platinum Wedding Package', 
+    'Platinum Wedding Package',
     'Gold Wedding Package',
     'Corporate Event',
     'Birthday Party',
@@ -85,13 +86,22 @@ const Navbar = () => {
     'Cocktail Service',
     'Catering Service',
     'Event Ushers Only',
-    'Other'
+    'Other',
   ];
 
   const timeSlots = [
-    '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM',
-    '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM',
-    '04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM'
+    '08:00 AM',
+    '09:00 AM',
+    '10:00 AM',
+    '11:00 AM',
+    '12:00 PM',
+    '01:00 PM',
+    '02:00 PM',
+    '03:00 PM',
+    '04:00 PM',
+    '05:00 PM',
+    '06:00 PM',
+    '07:00 PM',
   ];
 
   useEffect(() => {
@@ -119,20 +129,20 @@ const Navbar = () => {
 
   const navigation: NavItem[] = [
     { name: 'Home', href: '/' },
-    { 
-      name: 'Gallery', 
-      href: 'gallery',
+    {
+      name: 'Gallery',
+      href: '/gallery', // Fixed typo from 'garelly' to 'gallery'
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Weddings', href: '/garelly' },
+        { name: 'Weddings', href: '/gallery/weddings' }, // Adjusted paths for consistency
         { name: 'Corporate Events', href: '/gallery/corporate' },
-        { name: 'Social Events', href: '/gallery/social-events' }
-      ]
+        { name: 'Social Events', href: '/gallery/social-events' },
+      ],
     },
     { name: 'Services', href: '/services' },
     { name: 'Blogs', href: '/blogs' },
     { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' } ,
+    { name: 'Contact', href: '/contact' },
   ];
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -160,19 +170,21 @@ const Navbar = () => {
     return href === '/' ? pathname === '/' : pathname.startsWith(href);
   };
 
-  const handleBookingInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleBookingInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setBookingFormData(prev => ({
+    setBookingFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleAdminInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setAdminLoginData(prev => ({
+    setAdminLoginData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -181,17 +193,16 @@ const Navbar = () => {
     setFormStatus({ type: 'loading', message: 'Processing your booking request...' });
 
     try {
-      // Simulate API call - replace with actual Payload CMS submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      // Simulate API call - replace with actual API call to Payload CMS or backend
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       console.log('Booking submitted:', bookingFormData);
-      
-      setFormStatus({ 
-        type: 'success', 
-        message: 'Booking request submitted successfully! We will contact you within 24 hours to confirm details.' 
+
+      setFormStatus({
+        type: 'success',
+        message: 'Booking request submitted successfully! We will contact you within 24 hours to confirm details.',
       });
-      
-      // Reset form after successful submission
+
       setTimeout(() => {
         setBookingFormData({
           name: '',
@@ -200,15 +211,14 @@ const Navbar = () => {
           serviceType: '',
           preferredDate: '',
           preferredTime: '',
-          extraDetails: ''
+          extraDetails: '',
         });
         closeBookingModal();
       }, 3000);
-      
     } catch (error) {
-      setFormStatus({ 
-        type: 'error', 
-        message: 'Sorry, there was an error processing your booking. Please try again or contact us directly.' 
+      setFormStatus({
+        type: 'error',
+        message: 'Sorry, there was an error processing your booking. Please try again or contact us directly.',
       });
     }
   };
@@ -218,8 +228,7 @@ const Navbar = () => {
     setAdminStatus({ type: 'loading', message: 'Signing in...' });
 
     try {
-      // Simulate delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       if (adminLoginData.username === 'abcrwandaevent' && adminLoginData.password === 'abc@123') {
         setAdminStatus({ type: 'success', message: 'Login successful! Redirecting...' });
@@ -230,9 +239,9 @@ const Navbar = () => {
         throw new Error('Invalid credentials');
       }
     } catch (error) {
-      setAdminStatus({ 
-        type: 'error', 
-        message: 'Invalid username or password. Please try again.' 
+      setAdminStatus({
+        type: 'error',
+        message: 'Invalid username or password. Please try again.',
       });
     }
   };
@@ -245,19 +254,27 @@ const Navbar = () => {
         }`}
         style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}
       >
-        <div className="container mx-auto max-w-7xl px-6 text-1xl">
-           <div className="flex items-center justify-between h-16 text-black">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <img src="/images/logo.png" alt="ABC Event Ushers Logo" className="h-12 w-12 object-contain" />
-            <div className="hidden sm:block">
-              <p className={`text-sm transition-colors duration-200 ${isScrolled ? 'text-black' : 'text-[#2ca8e0]'}`}>
-                RWANDA LIMITED
-              </p>
-            </div>
-          </Link>
+        <div className="container mx-auto max-w-7xl px-6">
+          <div className="flex items-center justify-between h-16 text-black">
+            {/* Logo */}
+            <Link href="/" className="flex items-center space-x-3">
+              {/* Fallback to text if image is missing */}
+              <img
+                src="/images/logo.png"
+                alt="ABC Event Ushers Logo"
+                className="h-12 w-12 object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'; // Hide image if it fails to load
+                  e.currentTarget.nextElementSibling!.classList.remove('hidden'); // Show fallback
+                }}
+              />
+              <div className="hidden sm:block">
+                <p className={`text-sm transition-colors duration-200 ${isScrolled ? 'text-black' : 'text-[#2ca8e0]'}`}>
+                  ABC RWANDA LIMITED
+                </p>
+              </div>
+            </Link>
 
-            
             <nav className="hidden lg:flex items-center space-x-1">
               {navigation.map((item) => (
                 <div key={item.name} className="relative" ref={item.hasDropdown ? galleryRef : null}>
@@ -271,10 +288,11 @@ const Navbar = () => {
                         style={{ backgroundColor: isActiveRoute(item.href) ? '#2ca8e0' : undefined }}
                       >
                         <span>{item.name}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isGalleryOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${isGalleryOpen ? 'rotate-180' : ''}`}
+                        />
                       </button>
 
-                      {/* Dropdown */}
                       <div
                         className={`absolute top-full left-0 mt-1 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 transition-all duration-300 ${
                           isGalleryOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
@@ -339,8 +357,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Nav */}
-          <div className={`lg:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div
+            className={`lg:hidden transition-all duration-300 overflow-hidden ${
+              isMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
             <nav className="bg-gray-50 border-t border-gray-200 rounded-b-xl mx-2 mb-2">
               <div className="px-4 py-4 space-y-2">
                 {navigation.map((item) => (
@@ -355,9 +376,15 @@ const Navbar = () => {
                           style={{ backgroundColor: isActiveRoute(item.href) ? '#2ca8e0' : undefined }}
                         >
                           <span>{item.name}</span>
-                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isGalleryOpen ? 'rotate-180' : ''}`} />
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${isGalleryOpen ? 'rotate-180' : ''}`}
+                          />
                         </button>
-                        <div className={`ml-4 space-y-1 overflow-hidden transition-all duration-300 ${isGalleryOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <div
+                          className={`ml-4 space-y-1 overflow-hidden transition-all duration-300 ${
+                            isGalleryOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+                          }`}
+                        >
                           {item.dropdownItems?.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
@@ -391,8 +418,7 @@ const Navbar = () => {
                   </div>
                 ))}
 
-                {/* Mobile Actions */}
-                <div className="pt-4 border-t border-gray-300 mt-4 space-y-3">
+                <div className="pt-4 border-t border-gray-200 mt-4 space-y-3">
                   <button
                     onClick={openBookingModal}
                     className="block w-full text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-center"
@@ -416,11 +442,12 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Booking Modal - Now without dark background overlay */}
       {isBookingModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto pointer-events-auto backdrop-blur-sm" style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}>
-            {/* Modal Header */}
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div
+            className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}
+          >
             <div className="sticky top-0 bg-white px-8 py-6 border-b border-gray-200 rounded-t-2xl">
               <div className="flex items-center justify-between">
                 <div>
@@ -436,24 +463,27 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Modal Content */}
             <div className="p-8">
-              {/* Status Message */}
               {formStatus.type !== 'idle' && (
-                <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
-                  formStatus.type === 'success' ? 'bg-green-100 text-green-800' :
-                  formStatus.type === 'error' ? 'bg-red-100 text-red-800' :
-                  'bg-blue-100 text-blue-800'
-                }`}>
+                <div
+                  className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                    formStatus.type === 'success'
+                      ? 'bg-green-100 text-green-800'
+                      : formStatus.type === 'error'
+                      ? 'bg-red-100 text-red-800'
+                      : 'bg-blue-100 text-blue-800'
+                  }`}
+                >
                   {formStatus.type === 'success' && <CheckCircle className="w-5 h-5" />}
                   {formStatus.type === 'error' && <AlertCircle className="w-5 h-5" />}
-                  {formStatus.type === 'loading' && <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />}
+                  {formStatus.type === 'loading' && (
+                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  )}
                   <span className="text-sm">{formStatus.message}</span>
                 </div>
               )}
 
               <form onSubmit={handleBookingSubmit} className="space-y-6">
-                {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-bold mb-2 text-black">
@@ -467,8 +497,6 @@ const Navbar = () => {
                       onChange={handleBookingInputChange}
                       placeholder="Your full name"
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black placeholder-gray-500"
-                      onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                      onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                       required
                     />
                   </div>
@@ -484,8 +512,6 @@ const Navbar = () => {
                       onChange={handleBookingInputChange}
                       placeholder="your@email.com"
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black placeholder-gray-500"
-                      onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                      onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                       required
                     />
                   </div>
@@ -503,33 +529,28 @@ const Navbar = () => {
                     onChange={handleBookingInputChange}
                     placeholder="+250 XXX XXX XXX"
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black placeholder-gray-500"
-                    onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                    onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold mb-2 text-black">
-                    Service Type *
-                  </label>
+                  <label className="block text-sm font-bold mb-2 text-black">Service Type *</label>
                   <select
                     name="serviceType"
                     value={bookingFormData.serviceType}
                     onChange={handleBookingInputChange}
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black"
-                    onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                    onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                     required
                   >
                     <option value="">Select a service</option>
-                    {serviceTypes.map(service => (
-                      <option key={service} value={service}>{service}</option>
+                    {serviceTypes.map((service) => (
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
                     ))}
                   </select>
                 </div>
 
-                {/* Date and Time */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-bold mb-2 text-black">
@@ -543,8 +564,6 @@ const Navbar = () => {
                       onChange={handleBookingInputChange}
                       min={new Date().toISOString().split('T')[0]}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black"
-                      onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                      onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                       required
                     />
                   </div>
@@ -558,13 +577,13 @@ const Navbar = () => {
                       value={bookingFormData.preferredTime}
                       onChange={handleBookingInputChange}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black"
-                      onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                      onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                       required
                     >
                       <option value="">Select time</option>
-                      {timeSlots.map(time => (
-                        <option key={time} value={time}>{time}</option>
+                      {timeSlots.map((time) => (
+                        <option key={time} value={time}>
+                          {time}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -582,12 +601,9 @@ const Navbar = () => {
                     placeholder="Tell us about your specific requirements, guest count, special requests, etc."
                     rows={4}
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black placeholder-gray-500 resize-none"
-                    onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                    onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                   ></textarea>
                 </div>
 
-                {/* Submit Button */}
                 <div className="flex gap-4 pt-4">
                   <button
                     type="button"
@@ -612,11 +628,13 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Admin Login Modal */}
       {isAdminModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto pointer-events-auto backdrop-blur-sm" style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }} ref={adminRef}>
-            {/* Modal Header */}
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div
+            className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+            style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}
+            ref={adminRef}
+          >
             <div className="sticky top-0 bg-white px-8 py-6 border-b border-gray-200 rounded-t-2xl">
               <div className="flex items-center justify-between">
                 <div>
@@ -632,18 +650,22 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Modal Content */}
             <div className="p-8">
-              {/* Status Message */}
               {adminStatus.type !== 'idle' && (
-                <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
-                  adminStatus.type === 'success' ? 'bg-green-100 text-green-800' :
-                  adminStatus.type === 'error' ? 'bg-red-100 text-red-800' :
-                  'bg-blue-100 text-blue-800'
-                }`}>
+                <div
+                  className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                    adminStatus.type === 'success'
+                      ? 'bg-green-100 text-green-800'
+                      : adminStatus.type === 'error'
+                      ? 'bg-red-100 text-red-800'
+                      : 'bg-blue-100 text-blue-800'
+                  }`}
+                >
                   {adminStatus.type === 'success' && <CheckCircle className="w-5 h-5" />}
                   {adminStatus.type === 'error' && <AlertCircle className="w-5 h-5" />}
-                  {adminStatus.type === 'loading' && <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />}
+                  {adminStatus.type === 'loading' && (
+                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                  )}
                   <span className="text-sm">{adminStatus.message}</span>
                 </div>
               )}
@@ -661,8 +683,6 @@ const Navbar = () => {
                     onChange={handleAdminInputChange}
                     placeholder="Enter username"
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black placeholder-gray-500"
-                    onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                    onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                     required
                   />
                 </div>
@@ -679,13 +699,10 @@ const Navbar = () => {
                     onChange={handleAdminInputChange}
                     placeholder="Enter password"
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg transition-all duration-300 bg-white text-black placeholder-gray-500"
-                    onFocus={(e) => e.target.style.borderColor = '#2ca8e0'}
-                    onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                     required
                   />
                 </div>
 
-                {/* Submit Button */}
                 <div className="flex gap-4 pt-4">
                   <button
                     type="button"
