@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   LayoutDashboard, 
-  Image, 
+  Image as ImageIcon, 
   MessageCircle, 
   Calendar, 
   Settings, 
@@ -27,57 +27,61 @@ import {
   Home
 } from 'lucide-react';
 
-interface AdminDashboardProps {
-  stats?: Array<{
-    title: string;
-    value: string;
-    change: string;
-    icon: React.ElementType;
-    color: string;
-  }>;
-  bookings?: Array<{
-    id: number;
-    client: string;
-    service: string;
-    date: string;
-    status: string;
-    amount: string;
-  }>;
-  inquiries?: Array<{
-    id: number;
-    name: string;
-    email: string;
-    subject: string;
-    date: string;
-    status: string;
-  }>;
-  galleryImages?: Array<{
-    id: number;
-    title: string;
-    category: string;
-    uploadDate: string;
-    views: number;
-  }>;
-  companyInfo?: {
-    name: string;
-    phone: string;
-    address: string;
-    socialMedia: string;
-  };
+// Define interfaces for type safety
+interface Stat {
+  title: string;
+  value: string;
+  change: string;
+  icon: React.ElementType;
+  color: string;
 }
 
-export default function AdminDashboard({ 
-  stats = [], 
-  bookings = [], 
-  inquiries = [], 
-  galleryImages = [],
-  companyInfo = {
+interface Booking {
+  id: number;
+  client: string;
+  service: string;
+  date: string;
+  status: string;
+  amount: string;
+}
+
+interface Inquiry {
+  id: number;
+  name: string;
+  email: string;
+  subject: string;
+  date: string;
+  status: string;
+}
+
+interface GalleryImage {
+  id: number;
+  title: string;
+  category: string;
+  uploadDate: string;
+  views: number;
+}
+
+interface CompanyInfo {
+  name: string;
+  phone: string;
+  address: string;
+  socialMedia: string;
+}
+
+export default function AdminDashboard() {
+  // Initialize arrays and object with explicit types
+  const stats: Stat[] = [];
+  const bookings: Booking[] = [];
+  const inquiries: Inquiry[] = [];
+  const galleryImages: GalleryImage[] = [];
+  const companyInfo: CompanyInfo = {
     name: '',
     phone: '',
     address: '',
     socialMedia: ''
-  }
-}: AdminDashboardProps) {
+  };
+
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = useRouter();
@@ -86,7 +90,7 @@ export default function AdminDashboard({
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
     { id: 'bookings', name: 'Bookings', icon: Calendar },
     { id: 'inquiries', name: 'Inquiries', icon: MessageCircle },
-    { id: 'gallery', name: 'Gallery', icon: Image },
+    { id: 'gallery', name: 'Gallery', icon: ImageIcon },
     { id: 'settings', name: 'Settings', icon: Settings }
   ];
 
@@ -102,7 +106,6 @@ export default function AdminDashboard({
   };
 
   const handleLogout = () => {
-    // Simulate logout (clear session, etc.)
     setTimeout(() => {
       router.push('/');
     }, 500);
@@ -352,7 +355,6 @@ export default function AdminDashboard({
         </button>
       </div>
 
-      {/* Upload Area */}
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-8">
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-[#2ca8e0] transition-colors cursor-pointer">
           <Camera className="h-12 w-12 mx-auto text-gray-400 mb-4" />
@@ -362,7 +364,6 @@ export default function AdminDashboard({
         </div>
       </div>
 
-      {/* Gallery Grid */}
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6">
         {galleryImages.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -390,7 +391,7 @@ export default function AdminDashboard({
           </div>
         ) : (
           <div className="text-center py-12">
-            <Image className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <ImageIcon className="h-16 w-16 mx-auto text-gray-400 mb-4" />
             <p className="text-xl font-bold text-black mb-2">No Images Found</p>
             <p className="text-gray-600">Upload images to build your gallery</p>
           </div>
@@ -404,7 +405,6 @@ export default function AdminDashboard({
       <h2 className="text-2xl font-bold text-black">Settings</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        {/* Company Information */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6">
           <h3 className="text-lg font-bold text-black mb-4">Company Information</h3>
           <div className="space-y-4">
@@ -447,7 +447,6 @@ export default function AdminDashboard({
           </div>
         </div>
 
-        {/* Package Settings */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6">
           <h3 className="text-lg font-bold text-black mb-4">Package Settings</h3>
           <div className="text-center py-8">
@@ -487,7 +486,6 @@ export default function AdminDashboard({
 
   return (
     <div className="min-h-screen bg-gray-50 flex w-full" style={{ fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif' }}>
-      {/* Mobile Menu Button */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md border border-gray-200"
@@ -495,17 +493,14 @@ export default function AdminDashboard({
         {sidebarOpen ? <X className="h-6 w-6 text-black" /> : <Menu className="h-6 w-6 text-black" />}
       </button>
 
-      {/* Sidebar */}
       <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white shadow-lg border-r border-gray-200 transition-transform duration-300 ease-in-out`}>
         <div className="flex flex-col h-full">
-          {/* Logo */}
           <div className="flex items-center justify-center h-16 px-6 border-b border-gray-200">
             <h1 className="text-xl font-bold text-black">
               {companyInfo.name || 'ABC RWANDA'}
             </h1>
           </div>
           
-          {/* Navigation */}
           <nav className="flex-1 px-4 py-6 space-y-2">
             {menuItems.map((item) => (
               <button
@@ -526,7 +521,6 @@ export default function AdminDashboard({
             ))}
           </nav>
           
-          {/* User Profile and Actions */}
           <div className="p-4 border-t border-gray-200">
             <div className="space-y-3">
               <div className="flex items-center">
@@ -559,7 +553,6 @@ export default function AdminDashboard({
         </div>
       </div>
 
-      {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
@@ -567,9 +560,7 @@ export default function AdminDashboard({
         />
       )}
       
-      {/* Main Content */}
       <div className="flex-1 w-full">
-        {/* Header */}
         <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between px-4 sm:px-6 py-4">
             <div>
